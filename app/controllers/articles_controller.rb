@@ -28,6 +28,10 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
   end
+  
+  def index
+    @articles = Article.all
+  end
     
   private
     def article_params

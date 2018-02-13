@@ -9,10 +9,23 @@ class ArticlesController < ApplicationController
     #render plain: params[:article].inspect
     
     @article = Article.new(article_params)
-    @article.save
+    if @article.save
+      flash[:notice] = "Article was successfully created"
+      
+      # Redirect to show template
+      redirect_to article_path(@article)
+    else
+      # There were errors so reshow article
+      render 'new'
+      
+    end
     
-    # Redirect to show template
-    redirect_to articles_show(@article)
+  end
+
+  def show
+    # the :id comes from the parameter in the url
+    @article = Article.find(params[:id])
+  
   end
   
   private

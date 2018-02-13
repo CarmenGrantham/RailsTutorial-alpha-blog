@@ -20,6 +20,25 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def update
+    
+    #Show what has been entered in the form
+    #render plain: params[:article].inspect
+    
+    @article = Article.find(params[:id])
+    
+    #Update article with values from parameters
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated"
+      
+      # Redirect to show template
+      redirect_to article_path(@article)
+    else
+      # There were errors so reshow article
+      render 'edit'
+    end
+  end
+  
   def show
     # the :id comes from the parameter in the url
     @article = Article.find(params[:id])

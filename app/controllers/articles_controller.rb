@@ -17,17 +17,18 @@ class ArticlesController < ApplicationController
     else
       # There were errors so reshow article
       render 'new'
-      
     end
-    
   end
 
   def show
     # the :id comes from the parameter in the url
     @article = Article.find(params[:id])
-  
   end
-  
+    
+  def edit
+    @article = Article.find(params[:id])
+  end
+    
   private
     def article_params
       # White list values

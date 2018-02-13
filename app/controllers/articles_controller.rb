@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:edit, :show, :update, :destroy]
+  
   def new
     @article = Article.new
   end
@@ -25,7 +27,6 @@ class ArticlesController < ApplicationController
     #Show what has been entered in the form
     #render plain: params[:article].inspect
     
-    @article = Article.find(params[:id])
     
     #Update article with values from parameters
     if @article.update(article_params)
@@ -40,12 +41,11 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    # the :id comes from the parameter in the url
-    @article = Article.find(params[:id])
+    
   end
     
   def edit
-    @article = Article.find(params[:id])
+    
   end
   
   def index
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   end
   
   def destroy
-    @article = Article.find(params[:id])
+    
     @article.destroy
     
     flash[:notice] = "Article has been successfully deleted"
@@ -66,5 +66,8 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :description)
     end
   
-  
+    def set_article
+      # the :id comes from the parameter in the url
+      @article = Article.find(params[:id])
+    end
 end

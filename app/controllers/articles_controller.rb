@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     
     @article = Article.new(article_params)
     if @article.save
-      flash[:notice] = "Article was successfully created"
+      flash[:success] = "Article was successfully created"
       
       # Redirect to show template
       redirect_to article_path(@article)
@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
     
     #Update article with values from parameters
     if @article.update(article_params)
-      flash[:notice] = "Article was successfully updated"
+      flash[:success] = "Article was successfully updated"
       
       # Redirect to show template
       redirect_to article_path(@article)
@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
     
     @article.destroy
     
-    flash[:notice] = "Article has been successfully deleted"
+    flash[:danger] = "Article has been successfully deleted"
     redirect_to articles_path
   end
     

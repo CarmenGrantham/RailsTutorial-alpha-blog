@@ -30,8 +30,7 @@ class CategoriesController < ApplicationController
       redirect_to category_path(@category)
     else
       render 'edit'
-    end
-      
+    end      
   end
   
   def show
